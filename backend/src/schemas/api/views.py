@@ -6,6 +6,7 @@ from rest_framework.generics import(
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.http import HttpResponse
 
 from schemas.models import User
 from .serializers import UserObjectSerializer
@@ -20,21 +21,8 @@ class CreateUserView(CreateAPIView):
     serializer_class = UserObjectSerializer
     lookup_field = 'name__id'
 
-class DetailUserView(RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserObjectSerializer
-    lookup_field = 'name__id'
-
-# class UserDetailView(APIView):
-
-#     def test(self, request):
-#         email = request.data.get('email')
-#         print(email)
-    # email = models.Field(primary_key = True)
-    # queryset = User.objects.create(email)
-    # serializer_class = UserObjectSerializer
-
-# class GetSpecificUserVIew():
-#     queryset = User.object.all()
-#     for query queryset:
-#         print(query)
+class GetUserView(RetrieveAPIView):
+    def get(self, request, email):
+        queryset = User.objects.filter(email=email)
+        res = HttpResponse(queryset.values())
+        return res
