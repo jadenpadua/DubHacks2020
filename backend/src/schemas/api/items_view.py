@@ -16,8 +16,19 @@ class AllItemsView(ListAPIView):
     lookup_field = 'name__id'
 
 
+class CreateItemView(CreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemObjectSerializer
+    lookup_field = 'name__id'
+    def post(self, request):
+        tag = request.data.get('tag')
+        image = request.data.get('image')
+        default_cost = request.data.get('default_cost')
+        Item.objects.create(tag=tag,image=image,default_cost=default_cost)
+        return HttpResponse("Created")
+
 class GetItemView(RetrieveAPIView):
-    def get(self, request, item_id):
-        queryset = Item.objects.filter(item_id=item_id)
+    def get(self, request, id):
+        queryset = Item.objects.filter(id=id)
         res = HttpResponse(queryset.values())
         return res

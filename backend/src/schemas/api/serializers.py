@@ -13,4 +13,4 @@ class ItemObjectSerializer(serializers.ModelSerializer):
     # name_id = serializers.Field(source='name.id')
     class Meta:
         model = Item
-        fields = ('item_id','tag', 'image', 'default_cost')
+        fields = ('id', 'item_id','tag', 'image', 'default_cost')
