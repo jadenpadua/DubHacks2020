@@ -1,44 +1,26 @@
 import React from "react";
+import { ConnectedRouter } from 'connected-react-router';
+
+import configureStore, { history } from './store';
 import "./styles/index.less";
-import { Button, Space } from "antd";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Route, Switch} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import HomePage from './containers/HomePage';
 
-import TestForm from "./components/TestForm";
-import AllForms from "./components/AllForms";
-import FormDetail from "./components/FormDetail";
-import Register from "./components/Auth/Register";
-import Login from "./components/Auth/Login";
+const store = configureStore();
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <div className="App">
-        <Link to="/submit-form">
-          <div className="button-container">
-            <Button type="primary">go to submit page</Button>
-          </div>
-        </Link>
-        <br></br>
-        <Link to="/">
-          <div className="button-container">
-            <Button type="danger">go to home page</Button>
-          </div>
-        </Link>
-        <div className="container">
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <>
           <Switch>
-            <Route exact path="/" component={AllForms} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/register" component={Login} />
-            <Route exact path="/users/:userid" component={TestForm} />
-            <Route exact path="/store/" component={TestForm} />
-            <Route exact path="/store/:itemid" component={TestForm} />
-            <Route exact path="/form/:formID/" component={FormDetail} />
-            <Route exact path="/submit-form" component={TestForm} />
+            <Route path="/" component={HomePage} />
           </Switch>
-        </div>
-      </div>
-    </Router>
+        </>
+      </ConnectedRouter>
+    </Provider>
   );
 }
 
