@@ -1,6 +1,5 @@
 import React from "react";
-import "./App.css";
-import "antd/dist/antd.css";
+import "./styles/index.less";
 import { Button, Space } from "antd";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
