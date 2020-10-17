@@ -16,3 +16,9 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+class Item(models.Model):
+    item_id = models.CharField(max_length=100)
+    tag = models.CharField(max_length=100)
+    image = models.CharField(max_length=100)
+    default_cost = models.FloatField()

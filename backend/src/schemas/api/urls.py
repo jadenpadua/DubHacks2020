@@ -1,3 +1,4 @@
+from .items_view import AllItemsView
 from django.urls import path
 
 from .views import (
@@ -11,4 +12,6 @@ urlpatterns = [
     path('create/',CreateUserView.as_view()),
     # path('<name_id>/', DetailUserView.as_view()),
     # path('get_user/', UserDetailView.as_view()),
+
+    path('items/', AllItemsView.as_view())
 ]
