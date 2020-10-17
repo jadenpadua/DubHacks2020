@@ -15,7 +15,6 @@ class AllItemsView(ListAPIView):
     serializer_class = ItemObjectSerializer
     lookup_field = 'name__id'
 
-
 class CreateItemView(CreateAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemObjectSerializer
@@ -24,7 +23,8 @@ class CreateItemView(CreateAPIView):
         tag = request.data.get('tag')
         image = request.data.get('image')
         default_cost = request.data.get('default_cost')
-        Item.objects.create(tag=tag,image=image,default_cost=default_cost)
+        name = request.data.get('name')
+        Item.objects.create(tag=tag,image=image,default_cost=default_cost,name=name)
         return HttpResponse("Created")
 
 class GetItemView(RetrieveAPIView):
