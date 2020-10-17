@@ -8,7 +8,7 @@ class FormDetail extends React.Component {
 
   getForm = () => {
     const formID = this.props.match.params.formID;
-    axios.get(`http://127.0.0.1:8000/api/${formID}`).then((res) => {
+    axios.get(`http://127.0.0.1:8000/testapi/${formID}`).then((res) => {
       this.setState({
         form: res.data,
       });

@@ -16,17 +16,25 @@ python manage.py runserver
 ```
 
 ## Admin Credentials
+Admin view: http://127.0.0.1:8000/admin/
 username: admin
 password: 1234
 
-## API Endpoints
+## API TEST Endpoints
+```
+GET all entry: http://127.0.0.1:8000/testapi/
+GET a specific entry: http://127.0.0.1:8000/testapi/:formID/
+CREATE an entry: http://127.0.0.1:8000/testapi/create/
+UPDATE an entry: http://127.0.0.1:8000/testapi/:formID/update/
+DELETE an entry: http://127.0.0.1:8000/testapi/:formID/delete/
+```
+
+## API User Endpoints
 ```
 Admin view: http://127.0.0.1:8000/admin/
-GET all entry: http://127.0.0.1:8000/api/
-GET a specific entry: http://127.0.0.1:8000/api/:formID/
-CREATE an entry: http://127.0.0.1:8000/api/create/
-UPDATE an entry: http://127.0.0.1:8000/api/:formID/update/
-DELETE an entry: http://127.0.0.1:8000/api/:formID/delete/
+GET all users: http://127.0.0.1:8000/api/
+GET specific user: http://127.0.0.1:8000/api/:useremail/
+CREATE a user: http://127.0.0.1:8000/api/create/
 ```
 
 Subscribe to me on Youtube please

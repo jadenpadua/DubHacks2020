@@ -20,9 +20,8 @@ class TestForm extends React.Component {
     axios.defaults.headers = {
       "Content-Type": "application/json",
     };
-
     await axios
-      .post("http://127.0.0.1:8000/api/create/", postObj)
+      .post("http://127.0.0.1:8000/testapi/create/", postObj)
       .then((res) => {
         console.log(res, "Posted!");
       });

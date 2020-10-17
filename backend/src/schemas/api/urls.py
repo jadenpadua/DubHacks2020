@@ -1,18 +1,14 @@
 from django.urls import path
 
 from .views import (
-    TestObjectCreateView, 
-    TestObjectListView, 
-    TestObjectDetailView,
-    TestObjectUpdateView,
-    TestObjectDeleteView
+  AllUsersView,
+  CreateUserView,
+#   UserDetailView
 )
 
 urlpatterns = [
-    path('', TestObjectListView.as_view()),
-    path('create/', TestObjectCreateView.as_view()),
-    path('<pk>/', TestObjectDetailView.as_view()),
-    path('<pk>/update/', TestObjectUpdateView.as_view()),
-    path('<pk>/delete/', TestObjectDeleteView.as_view()),
-  
+    path('', AllUsersView.as_view()),
+    path('create/',CreateUserView.as_view()),
+    # path('<name_id>/', DetailUserView.as_view()),
+    # path('get_user/', UserDetailView.as_view()),
 ]

@@ -1,31 +1,40 @@
-from rest_framework.generics import(
-    CreateAPIView, 
+from rest_framework.generics import( 
     ListAPIView, 
-    RetrieveAPIView,
-    DestroyAPIView,
-    UpdateAPIView
+    CreateAPIView,
+    RetrieveAPIView
 )
 
-from schemas.models import TestObject
-from .serializers import TestObjectSeralizer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-class TestObjectListView(ListAPIView):
-    queryset = TestObject.objects.all()
-    serializer_class = TestObjectSeralizer
+from schemas.models import User
+from .serializers import UserObjectSerializer
 
+class AllUsersView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserObjectSerializer
+    lookup_field = 'name__id'
 
-class TestObjectDetailView(RetrieveAPIView):
-    queryset = TestObject.objects.all()
-    serializer_class = TestObjectSeralizer
+class CreateUserView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserObjectSerializer
+    lookup_field = 'name__id'
 
-class TestObjectCreateView(CreateAPIView):
-    queryset = TestObject.objects.all()
-    serializer_class = TestObjectSeralizer
+class DetailUserView(RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserObjectSerializer
+    lookup_field = 'name__id'
 
-class TestObjectUpdateView(UpdateAPIView):
-    queryset = TestObject.objects.all()
-    serializer_class = TestObjectSeralizer
+# class UserDetailView(APIView):
 
-class TestObjectDeleteView(DestroyAPIView):
-    queryset = TestObject.objects.all()
-    serializer_class = TestObjectSeralizer
+#     def test(self, request):
+#         email = request.data.get('email')
+#         print(email)
+    # email = models.Field(primary_key = True)
+    # queryset = User.objects.create(email)
+    # serializer_class = UserObjectSerializer
+
+# class GetSpecificUserVIew():
+#     queryset = User.object.all()
+#     for query queryset:
+#         print(query)

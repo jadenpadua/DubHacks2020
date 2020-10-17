@@ -1,8 +1,9 @@
 from rest_framework import serializers
 
-from schemas.models import TestObject
+from schemas.models import User
 
-class TestObjectSeralizer(serializers.ModelSerializer):
+class UserObjectSerializer(serializers.ModelSerializer):
+    # name_id = serializers.Field(source='name.id')
     class Meta:
-        model = TestObject
-        fields = ('id','test_title', 'test_data')
+        model = User
+        fields = ('id','name', 'email', 'address','preferences')
