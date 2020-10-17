@@ -1,38 +1,26 @@
 import React from "react";
-import "./App.css";
-import "antd/dist/antd.css";
-import { Button, Space } from "antd";
+import { ConnectedRouter } from 'connected-react-router';
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import configureStore, { history } from './store';
+import "./styles/index.less";
 
-import TestForm from "./components/TestForm";
-import AllForms from "./components/AllForms";
-import FormDetail from "./components/FormDetail";
+import { Route, Switch} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import HomePage from './containers/HomePage';
 
-function App() {
+const store = configureStore();
+
+const App = () => {
   return (
-    <Router>
-      <div className="App">
-        <Link to="/submit-form">
-          <div className="button-container">
-            <Button type="primary">go to submit page</Button>
-          </div>
-        </Link>
-        <br></br>
-        <Link to="/">
-          <div className="button-container">
-            <Button type="danger">go to home page</Button>
-          </div>
-        </Link>
-        <div className="container">
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <>
           <Switch>
-            <Route exact path="/" component={AllForms} />
-            <Route exact path="/form/:formID/" component={FormDetail} />
-            <Route exact path="/submit-form" component={TestForm} />
+            <Route path="/" component={HomePage} />
           </Switch>
-        </div>
-      </div>
-    </Router>
+        </>
+      </ConnectedRouter>
+    </Provider>
   );
 }
 
