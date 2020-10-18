@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { ConnectedRouter } from 'connected-react-router';
 
 import configureStore, { history } from './store';
-import "./styles/index.less";
-import "./styles/reset.less";
+import './styles/index.less';
+import './styles/reset.less';
 
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import HomePage from './containers/HomePage';
 import BuyPage from './containers/BuyPage';
@@ -39,6 +39,6 @@ const App = () => {
       </ConnectedRouter>
     </Provider> 
   );
-}
+};
 
 export default App;

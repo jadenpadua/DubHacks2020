@@ -1,6 +1,86 @@
 .buypage {
-    width: 90vw;
-    display: flex;
+	color: #333;
+	display: flex;
+	font-family: Lato;
     justify-content: center;
-
+    flex-direction: column;
+    align-items: center;
+	margin-top: 10vh;
+	width: 100vw;
+	.b-row {
+		display: flex;
+		.i-card {
+			margin-right: 3vw;
+			position: relative;
+			.b-image {
+				border-radius: 15px;
+				filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));
+				height: 585px;
+				object-fit: cover;
+				width: 475px;
+			}
+			.price {
+				background: #FFFFFB;
+				border: 1.76087px solid #DFDFDF;
+				border-radius: 15px;
+				box-shadow: 0px 7.04348px 7.04348px rgba(0, 0, 0, 0.04);
+				padding: 10px 10px 0px 10px;
+				position: absolute;
+				right: 6%;
+				top: 4%;
+				h3 {
+					font-size: 18px;
+					font-weight: bold;
+				}
+			}
+		}
+		.i-text {
+			display: flex;
+			flex-direction: column;
+            width: 650px;
+            
+            .redeem {
+                display: flex;
+                align-items: center;
+                .text {
+                    margin-bottom: 0px;
+                    margin-top: 1px;
+                }
+            }
+			.stars {
+				margin-top: 10px;
+			}
+			.reviews {
+				align-items: center;
+				display: flex;
+				.n-reviews {
+					margin-bottom: 0px;
+					margin-left: 3px;
+					margin-top: 12px;
+				}
+			}
+			.n-buyins {
+				font-size: 30px;
+				font-weight: 600;
+				margin-bottom: 0px;
+				.calc {
+					font-size: 18px;
+					font-weight: 300;
+				}
+			}
+			.title {
+				font-size: 46px;
+				font-weight: 700;
+				letter-spacing: 0.045em;
+				margin-bottom: 0px;
+			}
+			h3 {
+				font-size: 22px;
+				font-weight: 300;
+			}
+			.desc {
+				font-size: 16px;
+			}
+		}
+	}
 }
