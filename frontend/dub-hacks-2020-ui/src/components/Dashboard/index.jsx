@@ -20,11 +20,12 @@ const Dashboard = () => {
   //   {title: "Pizzas", description: "Get a free $25 gift card", image:"https://assets.bonappetit.com/photos/5aaff25c6ed79626bc262ee1/16:9/w_2560%2Cc_limit/pizza-slice-opener-pepperoni-cheese.jpg", location:"San Gabriel, CA", buyinMin: 23, price: 3.20, unit:'slices', type:'host'}
   // ]
   const [data, setData] =useState([]);
+  const [_host_data, _setHostData] = useState([]);
   const [host_data, setHostData] = useState([]);
   const [idToItem, setItems] = useState({});
   const updateHosts = () => {
     axios.get("http://f255845c2c00.ngrok.io/api/items/").then((res) => {
-      setHostData(res.data.map((info) => {
+      _setHostData(res.data.map((info) => {
         idToItem[info.id] = info;
         setItems(idToItem);
         return {
@@ -47,9 +48,11 @@ const Dashboard = () => {
   }, []);
   const updateOrders = () => {
     axios.get("http://f255845c2c00.ngrok.io/api/orders/").then((res) => {
+      const filter_id_set = new Set();
       setData(res.data.map((info) => {
         const item = idToItem[info.item_id];
         console.log(info, item)
+        filter_id_set.add(info.item_id);
         return {
           title: item.name,
           buyin: info.amount,
@@ -63,13 +66,22 @@ const Dashboard = () => {
           orderDeadline: info.order_deadline,
         }
       }));
+      console.log(filter_id_set);
+      const newhostdata = []
+      _host_data.forEach((info) => {
+        console.log(info.item_id)
+        if (!filter_id_set.has(info.item_id)) {
+          newhostdata.push(info);
+        }
+      });
+      setHostData(newhostdata)
     });
   }
   useEffect(() => {
-    if (host_data.length > 0) {
+    if (_host_data.length > 0) {
       updateOrders()
     }
-  }, [host_data]);
+  }, [_host_data]);
   return (
     <>
     <Navbar />
