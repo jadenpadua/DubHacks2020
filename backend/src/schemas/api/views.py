@@ -71,29 +71,27 @@ class GetRecommendationsView(RetrieveAPIView):
                 # weigh amount less cuz probably people always buy fixed amounts
                 cost = item['default_cost'] * (purchase['amount'] / 10)
                 category = item['tag']
-                w1 = ((10 - i) / 10) * cost
+                print(purchase["purchase_date"], category)
+                w1 = ((100 - i * 10) / 1) * cost
                 if category in category_weights:
                     category_weights[category] += w1
                 else:
                     category_weights[category] = w1
 
-
         category_weights_list = []
         for k, v in category_weights.items():
             category_weights_list.append({"tag": k, "weight": v})
-        sorted(category_weights_list, key=lambda a: a["weight"])
-        print(category_weights_list)
+        category_weights_list = sorted(category_weights_list, key=lambda a: a["weight"],reverse=True)
         recent_purchases = Purchase.objects.order_by('-purchase_date')[:100].values()
-
+        print(category_weights_list)
         recommendations = []
-        for r in recent_purchases:
-            for info in category_weights_list[:3]:
+        for info in category_weights_list[:3]:
+            for r in recent_purchases:
                 # now find popular items recently bought of same tag
                 if r["tag"] == info["tag"]:
                     item = Item.objects.filter(id=r["item_id"]).values()[0]
                     recommendations.append(item)
-                    if (len(recommendations) >= 3):
-                        break
+                    break
             if (len(recommendations) >= 3):
                 break
             
@@ -107,11 +105,6 @@ class PurchaseView(CreateAPIView):
         amount = request.data.get('amount')
         longitude = request.data.get('longitude')
         latitude = request.data.get('latitude')
-
-        current_time = datetime.now().strftime('%d/%m/%Y')
-        current_time_split = current_time.split('/')
-        current_time_split[1] = str(int(current_time_split[1]) + 1)
-        delivery_date = current_time_split
 
         orders = Order.objects.filter(item_id=item_id).order_by("-order_deadline").values()
         _item = Item.objects.filter(id=item_id).values()
