@@ -119,14 +119,25 @@ class PurchaseView(CreateAPIView):
         if (len(_item) == 0):
             return HttpResponseBadRequest("Not a valid item")
         item = _item[0]
+
+        order_deadline = datetime.now() + timedelta(days=2)
+        delivery_date = order_deadline + timedelta(days=1)
+        order_id = None
         if (len(orders) == 0):
             #TODO fix host_user
-            order_deadline = datetime.now() + timedelta(days=2)
-            delivery_date = order_deadline + timedelta(days=1)
-            Order.objects.create(host_user=email,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme")
+           
+            new_order = Order.objects.create(host_user=email,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme")
+            order_id = new_order["id"]
         else:
             order = orders[0]
-            
+            new_amount = order["amount"] + amount
+            #TODO reduce cost per unit
+            order_id = order["id"]
+            Order.objects.filter(id=order_id).update(amount=new_amount)
+
+        # fix cost per unit
+        Purchase.objects.create(email=email,host_user=email,order_id=order_id,purchase_date=datetime.now(),item_id=item_id,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme",tag=item["tag"])
+
         # if len(item_order) == 0:
         #     Order.objects.create(hostUser=email
         #     ,order_id=???,purchase_date=purchase_date,amount=amount)
