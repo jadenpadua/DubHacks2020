@@ -1,6 +1,7 @@
 import { onLocationChanged } from 'connected-react-router';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect} from 'react-router-dom';
+import axios from 'axios';
 
 import './style.less';
 
@@ -41,40 +42,34 @@ const RegisterForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(email)
-    console.log(password)
-    console.log(interests)
-    console.log(location)
-
     const interests_string = interests.join(',')
-    console.log(interests_string)
 
-    // const postObj = {
-    //   name: "this is not used",
-    //   email: email,
-    //   address: location,
-      
+    const postObj = {
+      name: "this is not used",
+      email: email,
+      address: location,
+      preferences: interests_string
+    }
 
-      
-    // }
+    axios.defaults.headers = {
+      "Content-Type": 'application/json',
+    }
 
-    // axios.defaults.headers = {
-    //   "Content-Type": 'application/json',
-    // }
+      axios.post("http://127.01:8000/api/create/", postObj )
+        .then((res) => {
+          console.log(res)
+          setisLogged(true)
+        })
 
-    //   axios.post("http://127.01:8000/api/create/", )
-    //     .then((res) => {
-    //       console.log(res)
-    //       this.setState({isLogged: true, email: '', password: ''})
-    //       const data = JSON.parse(res.data.replace(/'/g,"\""))
-    //       this.setUser(data);
-    //     })
+  }
 
+  if(isLogged) {
+    return <Redirect to = {{ pathname: "/login" }}  />;
   }
 
 
   return (
-    <div className="register-form">
+     <div className="register-form">
       <div>
         <h1>Become a community member today! </h1>
         <hr/>
