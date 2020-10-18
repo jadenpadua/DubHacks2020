@@ -92,7 +92,7 @@ const Dashboard = () => {
           })}
           <div>
             <AntdCard className='plus-card' onClick={() => {
-              history.push("/host");
+              history.push("/buy");
             }}>
               <div className="plus">
                 <PlusOutlined />

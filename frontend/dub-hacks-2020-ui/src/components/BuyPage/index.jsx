@@ -1,5 +1,5 @@
-import React from 'react';
-import { Progress } from 'antd';
+import React, { useContext, useEffect } from 'react';
+import { message, Progress } from 'antd';
 
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
@@ -10,17 +10,37 @@ import redeem from '../../assets/redeem.svg';
 import stanley from '../../assets/stanley.png';
 import ratings from '../../assets/rating.png';
 import question from '../../assets/question.png';
+import OrderContext from '../../OrderContext';
+import { useHistory, useParams } from 'react-router-dom';
+import axios from 'axios';
+import UserContext from '../../UserContext';
 
 const BuyPage = (props) => {
   let stars = [];
   for (let i = 0; i < 5; ++i) {
     stars.push(<img className="stars" src={star} key={i} alt="cat" />);
   }
-
+  const {user} = useContext(UserContext)
+  const {order} = useContext(OrderContext)
+  console.log(order);
+  const history = useHistory();
   const Map = ReactMapboxGl({
     accessToken:
       'pk.eyJ1IjoiZW1pbmd1eWVuIiwiYSI6ImNrOGI2ZjRyODA1aHEzZG93cmFxaHR5d2IifQ.x8v_uFbdBanYgRtoKCGIOw'
   });
+
+  const makeOrder = (amount) => {
+    axios.post("http://127.01:8000/api/users/" + user.email + "/purchases/", {
+      host_user: user.email,
+      item_id: order.item_id,
+      amount: amount,
+      longitude: 0,
+      latitude: 0,
+    }).then(() => {
+      message.success("Placed purchase!")
+      history.push("/dashboard");
+    })
+  }
 
   function calcRemain(cur, goal) {
     if (cur < goal) {
@@ -34,14 +54,14 @@ const BuyPage = (props) => {
     <div className="buy-page">
       <div className="b-row">
         <div className="i-card">
-          <img src={props.image} className="b-image" alt="i-buy" />
+          <img src={order.image} className="b-image" alt="i-buy" />
           <div className="price">
-            <h3>{props.price}</h3>
+            <h3>{order.price}</h3>
           </div>
         </div>
         <div className="i-text">
-          <h1 className="title">{props.title}</h1>
-          <h3>Visit {props.title}'s website</h3>
+          <h1 className="title">{order.title}</h1>
+          <h3>Visit {order.title}'s website</h3>
           <div className="reviews">
             {stars}
             <p className="n-reviews">
@@ -52,10 +72,10 @@ const BuyPage = (props) => {
           <br />
           <div className="buys">
             <h2 className="n-buyins">
-              {props.current}/{props.goal} Buy-ins{' '}
+              {order.current}/{order.goal} Buy-ins{' '}
               <span className="calc">
                 {' '}
-                | {calcRemain(props.current, props.goal)}{' '}
+                | {calcRemain(order.current, order.goal)}{' '}
               </span>
             </h2>
             <Progress
@@ -64,13 +84,13 @@ const BuyPage = (props) => {
                 '40%': '#ECCEA0',
                 '100%': '#49F56F',
               }}
-              percent={((props.current / props.goal) * 100).toFixed(0)}
+              percent={((order.current / order.goal) * 100).toFixed(0)}
               strokeWidth="15px"
             />
           </div>
           <br />
           <br />
-          <p className="desc">{props.description}</p>
+          <p className="desc">{order.description}</p>
           <br />
           <div className="redeem">
             <img src={redeem} alt="" />

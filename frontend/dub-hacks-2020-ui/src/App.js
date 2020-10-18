@@ -16,16 +16,19 @@ import HostPage from './containers/HostPage';
 import Profile from './containers/Profile';
 import Dashboard from "./components/Dashboard";
 import { UserProvider } from "./UserContext";
+import { OrderProvider } from "./OrderContext";
 
 const store = configureStore();
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [order, setOrder] = useState({});
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <>
         <UserProvider value={{user: user, setUser: setUser}}>
+        <OrderProvider value={{order: order, setOrder: setOrder}}>
           <Switch>
             <Route path="/store" component={StorePage} />
             <Route path="/host" component={HostPage} />
@@ -36,6 +39,7 @@ const App = () => {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
+        </OrderProvider>
         </UserProvider>
         </>
       </ConnectedRouter>

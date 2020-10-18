@@ -6,27 +6,34 @@ import {ClockCircleOutlined, SmileOutlined} from '@ant-design/icons'
 import './index.less';
 import axios from 'axios';
 import UserContext from '../../UserContext';
+import OrderContext from '../../OrderContext';
+import { useHistory } from 'react-router-dom';
 
 const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, unit, type, description, item_id, updateOrders, updateHosts}) => {
   const {user} = useContext(UserContext);
+  const {order, setOrder} = useContext(OrderContext);
+  const history = useHistory();
   const purchase = () => {
     if (type === 'host') {
-
-      axios.post("http://127.01:8000/api/create_order/" + user.email, {
-        item_id: item_id,
-      }).then(() =>{ 
-        updateHosts();
-      })
+      setOrder({title, image, price,current:buyin, goal: buyinMin,description: description});
+      // axios.post("http://127.01:8000/api/create_order/" + user.email, {
+      //   item_id: item_id,
+      // }).then(() =>{ 
+      //   updateHosts();
+      // })
+      history.push("/buy")
     } else if (type === 'purchase') {
-      axios.post("http://127.01:8000/api/users/" + user.email + "/purchases/", {
-        host_user: user.email,
-        item_id: item_id,
-        amount: 1,
-        longitude: 0,
-        latitude: 0,
-      }).then(() => {
-        updateOrders();
-      })
+      // axios.post("http://127.01:8000/api/users/" + user.email + "/purchases/", {
+      //   host_user: user.email,
+      //   item_id: item_id,
+      //   amount: 1,
+      //   longitude: 0,
+      //   latitude: 0,
+      // }).then(() => {
+      //   updateOrders();
+      // })
+      setOrder({title, image, price,current:buyin, goal: buyinMin,description: description});
+      history.push("/buy")
     }
   }
   return (

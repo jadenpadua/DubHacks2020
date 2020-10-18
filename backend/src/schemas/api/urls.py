@@ -21,5 +21,6 @@ urlpatterns = [
     path('items/<id>', GetItemView.as_view()),
     path('users/<email>/purchases/', PurchaseView.as_view()),
     path('create_order/<email>', CreateOrderView.as_view()),
-    path('orders/', AllOrdersView.as_view())
+    path('orders/', AllOrdersView.as_view()),
+    path('orders/<order_id>', AllOrdersView.as_view())
 ]
