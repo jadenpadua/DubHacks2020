@@ -41,7 +41,7 @@ const Dashboard = () => {
           })}
           <div>
             <AntdCard className='plus-card' onClick={() => {
-              history.push("/");
+              history.push("/host");
             }}>
               <div className="plus">
                 <PlusOutlined />
