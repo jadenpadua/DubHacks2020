@@ -37,7 +37,7 @@ const BuyPage = (props) => {
       longitude: 0,
       latitude: 0,
     }).then(() => {
-      message.success("Placed purchase!")
+      message.success("Placed purchase!");
       history.push("/dashboard");
     })
   }
@@ -98,6 +98,9 @@ const BuyPage = (props) => {
               This mass buy helps support local businesses and families! (
               <u>Learn More</u>)
             </p>
+          </div>
+          <div>
+            <button className="btn" onClick={() => {makeOrder(1)}}>Purchase now</button>
           </div>
         </div>
       </div>

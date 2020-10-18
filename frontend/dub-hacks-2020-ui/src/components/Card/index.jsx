@@ -32,7 +32,7 @@ const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, un
       // }).then(() => {
       //   updateOrders();
       // })
-      setOrder({title, image, price,current:buyin, goal: buyinMin,description: description});
+      setOrder({title, image, price,current:buyin, goal: buyinMin,description: description, item_id:item_id});
       history.push("/buy")
     }
   }
