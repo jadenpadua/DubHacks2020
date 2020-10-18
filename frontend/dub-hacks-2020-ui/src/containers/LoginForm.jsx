@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LoginForm from '../components/LoginForm';
+import UserContext from '../UserContext';
 
 const LoginFormContainer = () => {
+  const {user, setUser} = useContext(UserContext);
   return (
-    <LoginForm/>
+    <LoginForm setUser={setUser}/>
   );
 };
 

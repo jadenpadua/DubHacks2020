@@ -1,10 +1,10 @@
 import React from 'react';
-import BuyPage from '../components/BuyPage';
+import Home from '../components/Home';
 
-const BuyPageContainer = () => {
+const HomePageContainer = () => {
   return (
-    <BuyPage />
+    <Home />
   );
 };
 
-export default BuyPageContainer;
+export default HomePageContainer;
