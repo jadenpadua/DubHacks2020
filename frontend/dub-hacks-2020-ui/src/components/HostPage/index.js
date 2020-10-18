@@ -33,10 +33,11 @@ const HostForm = (props) => {
       longitude: 0,
       latitude: 0,
       image: formData.thumb,
-      desc: formData.desc,
+      description: formData.desc,
       location: formData.location,
       buy_in_min: buyin,
       default_cost: parseFloat(formData.price),
+      reward_desc: formData.reward_desc,
     };
     console.log(body);
     axios.defaults.headers = {
@@ -86,6 +87,10 @@ const HostForm = (props) => {
             <input className="normal-input" name="itemName" onChange={onChange}/>
             <h2>Price per unit</h2>
             <input className="normal-input" name="price" onChange={onChange}/>
+            <h2 className="location"> Required Buy-ins </h2>
+            <Slider min={20} max={500} tooltipVisible={true} tooltipPlacement="bottom" marks={marks} className="slider" defaultValue={120} onChange={(v) => {
+              setBuyIn(v);
+            }} />
             <h2>Image Thumbnail</h2>
             <input className="normal-input" name="thumb" onChange={onChange}/>
             <h2>Description</h2>
@@ -103,12 +108,8 @@ const HostForm = (props) => {
             <input className="tag-input" placeholder="Other+" name="tags" onKeyDown={handleInputDown}/>
             <h2 className="location"> Location </h2>
             <input className="normal-input" onChange={onChange}  name="location"/>
-            <h2 className="location"> Required Buy-ins </h2>
-            <Slider min={20} max={500} tooltipVisible={true} tooltipPlacement="bottom" marks={marks} className="slider" defaultValue={120} onChange={(v) => {
-              setBuyIn(v);
-            }} />
             <h2 className="location"> Reward for host </h2>
-            <input className="normal-input" onChange={onChange}  name="reward"/>
+            <input className="normal-input" onChange={onChange}  name="reward_desc"/>
             <NavLink activeClassName="selected" to="/login">
               <div className="button">Clear</div>
             </NavLink>

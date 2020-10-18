@@ -13,31 +13,37 @@ import LoginPage from './containers/LoginPage';
 import StorePage from './containers/StorePage';
 import RegisterPage from './containers/RegisterPage';
 import HostPage from './containers/HostPage';
+import HostStart from './containers/HostStart';
 import Profile from './containers/Profile';
 import Dashboard from "./components/Dashboard";
 import ThankYouModal from "./components/ThankYouModal";
 import { UserProvider } from "./UserContext";
+import { OrderProvider } from "./OrderContext";
 
 const store = configureStore();
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [order, setOrder] = useState({});
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <>
         <UserProvider value={{user: user, setUser: setUser}}>
+        <OrderProvider value={{order: order, setOrder: setOrder}}>
           <Switch>
             <Route path="/store" component={StorePage} />
             <Route path="/host" component={HostPage} />
+            <Route path="/start" component={HostStart} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/modal" component={ThankYouModal} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/buypage" component={BuyPage} />
+            <Route path="/buy" component={BuyPage} />
             <Route path="/profile" component={Profile} />
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
+        </OrderProvider>
         </UserProvider>
         </>
       </ConnectedRouter>

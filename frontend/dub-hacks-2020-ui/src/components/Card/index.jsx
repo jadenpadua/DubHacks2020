@@ -1,20 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Card as AntdCard } from 'antd';
 import { Progress } from 'antd'
 import locationsvg from './location.svg';
 import {ClockCircleOutlined, SmileOutlined} from '@ant-design/icons'
 import './index.less';
+import axios from 'axios';
+import UserContext from '../../UserContext';
+import OrderContext from '../../OrderContext';
+import { useHistory } from 'react-router-dom';
 
-const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, unit, type, description}) => {
+const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, unit, type, description, item_id, updateOrders, updateHosts}) => {
+  const {user} = useContext(UserContext);
+  const {order, setOrder} = useContext(OrderContext);
+  const history = useHistory();
   const purchase = () => {
-    
+    if (type === 'host') {
+      setOrder({title, image, price,current:buyin, goal: buyinMin,description: description});
+      // axios.post("http://127.01:8000/api/create_order/" + user.email, {
+      //   item_id: item_id,
+      // }).then(() =>{ 
+      //   updateHosts();
+      // })
+      history.push("/buy")
+    } else if (type === 'purchase') {
+      // axios.post("http://127.01:8000/api/users/" + user.email + "/purchases/", {
+      //   host_user: user.email,
+      //   item_id: item_id,
+      //   amount: 1,
+      //   longitude: 0,
+      //   latitude: 0,
+      // }).then(() => {
+      //   updateOrders();
+      // })
+      setOrder({title, image, price,current:buyin, goal: buyinMin,description: description, item_id:item_id});
+      history.push("/buy")
+    }
   }
   return (
     <div className="Card">
       <AntdCard className="card">
         <img className="cover-img" src={image} />
         <div className="price">
-          ${price.toFixed(2)}/{unit}
+          ${price.toFixed(2)}
         </div>
         <div className="meta">
           <h1>{title}</h1>

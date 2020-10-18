@@ -1,4 +1,4 @@
-.buypage {
+.buy-page {
 	color: #333;
 	display: flex;
 	font-family: Lato;
@@ -7,6 +7,24 @@
     align-items: center;
 	margin-top: 10vh;
 	width: 100vw;
+	.btn {
+		margin-top: 24px;
+		text-align: center;
+		background: linear-gradient(268.33deg, #FB8A8A -9.18%, #D099F2 229.22%);
+		border-radius: 100px;
+		font-size: 20px;
+		font-weight: 600;
+		z-index: 100;
+		color: white;
+		height: 48px;
+		width: 128px;
+		cursor: pointer;
+		line-height: 48px;
+		padding: 0 5px;
+		box-shadow: 0px 3.3627450466156006px 3.3627450466156006px 0px rgba(0,0,0,0.09);
+		transition: transform 0.2s, box-shadow 0.2s;
+		border: none;
+	}
 	.b-row {
 		display: flex;
 		.i-card {
@@ -30,6 +48,7 @@
 				top: 4%;
 				h3 {
 					font-size: 18px;
+					margin-top: -9px;
 					font-weight: bold;
 				}
 			}
@@ -80,6 +99,63 @@
 			}
 			.desc {
 				font-size: 16px;
+			}
+		}
+	}
+
+	.buyer-info {
+		display: flex;
+		margin-top: 30px;
+		margin-bottom: 200px;
+		width: 1160px;
+		.map {
+			display: inline-block;
+			filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));
+			border-radius: 15px;
+			width: 500px;
+			height: 200px;
+			position: relative;
+			margin-right: 50px;
+			overflow: hidden;
+		}
+		.contact-info {
+			margin-left: 50px;
+			display: inline-block;
+			width: 560px;
+			height: 200px;
+			position: relative;
+
+			.question {
+				position: absolute;
+				right: -70px;
+				top: 0;
+				height: 200px;
+			}
+
+			h1 {
+				font-size: 35px;
+				font-weight: 700;
+			}
+
+			h2 {
+				font-size: 24px;
+			}
+
+			.host-contact {
+				display: flex;
+				align-items: center;;
+				font-size: 24px;
+				.host-container {
+					height: 100px;
+				}
+				.ratings {
+					height: 50px;
+				}
+				margin-top: 15px;
+				.stanley {
+					height: 100px;
+					margin-right: 20px;
+				}
 			}
 		}
 	}

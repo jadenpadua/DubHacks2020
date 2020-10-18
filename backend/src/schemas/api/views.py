@@ -12,11 +12,16 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 
 from schemas.models import User, Item,  Purchase, Order
-from .serializers import UserObjectSerializer
+from .serializers import OrderObjectSerializer, UserObjectSerializer
 
 class AllUsersView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserObjectSerializer
+    lookup_field = 'name__id'
+
+class AllOrdersView(ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderObjectSerializer
     lookup_field = 'name__id'
 
 class CreateUserView(CreateAPIView):
