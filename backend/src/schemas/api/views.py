@@ -1,3 +1,4 @@
+import datetime
 from rest_framework.generics import( 
     ListAPIView, 
     CreateAPIView,
@@ -26,3 +27,12 @@ class GetUserView(RetrieveAPIView):
         queryset = User.objects.filter(email=email)
         res = HttpResponse(queryset.values())
         return res
+
+class PurchaseView(CreateAPIView):
+    def post(self, request, email):
+        queryset = User.objects.filter(email=email)
+        res = HttpResponse(queryset.values())
+        
+        email = res.data.get('email')
+        purchase_date = datetime.datetime.now()
+        amount = res.data.get('amount')
