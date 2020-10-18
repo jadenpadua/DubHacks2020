@@ -13,6 +13,7 @@ class LoginForm extends React.Component {
       password: '',
       isLogged: false
     }
+    this.setUser = props.setUser;
 
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -43,6 +44,8 @@ class LoginForm extends React.Component {
         .then((res) => {
           console.log(res)
           this.setState({isLogged: true, email: '', password: ''})
+          const data = JSON.parse(res.data.replace(/'/g,"\""))
+          this.setUser(data);
         })
     this.setState({
       email: '',
@@ -51,7 +54,6 @@ class LoginForm extends React.Component {
   }
 
   render() {
-
     if(this.state.isLogged) {
       return <Redirect to = {{ pathname: "/profile" }}  />;
     }

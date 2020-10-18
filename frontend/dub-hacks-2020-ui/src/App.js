@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ConnectedRouter } from 'connected-react-router';
 
 import configureStore, { history } from './store';
@@ -13,14 +13,17 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Profile from './containers/Profile';
 import Dashboard from "./components/Dashboard";
+import { UserProvider } from "./UserContext";
 
 const store = configureStore();
 
 const App = () => {
+  const [user, setUser] = useState({});
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <>
+        <UserProvider value={{user: user, setUser: setUser}}>
           <Switch>
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
@@ -29,6 +32,7 @@ const App = () => {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
+        </UserProvider>
         </>
       </ConnectedRouter>
     </Provider> 
