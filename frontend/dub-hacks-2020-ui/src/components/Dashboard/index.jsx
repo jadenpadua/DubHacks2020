@@ -49,7 +49,7 @@ const Dashboard = () => {
     axios.get("http://f255845c2c00.ngrok.io/api/orders/").then((res) => {
       setData(res.data.map((info) => {
         const item = idToItem[info.item_id];
-        
+        console.log(info, item)
         return {
           title: item.name,
           buyin: info.amount,
@@ -60,6 +60,7 @@ const Dashboard = () => {
           item_id: item.id,
           location: item.location,
           unit: 'slices',
+          orderDeadline: info.order_deadline,
         }
       }));
     });
@@ -95,7 +96,7 @@ const Dashboard = () => {
           })}
           <div>
             <AntdCard className='plus-card' onClick={() => {
-              history.push("/buy");
+              history.push("/host");
             }}>
               <div className="plus">
                 <PlusOutlined />
