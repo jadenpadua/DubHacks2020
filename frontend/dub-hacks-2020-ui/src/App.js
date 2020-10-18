@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 
 import configureStore, { history } from './store';
-import "./styles/index.less";
-import "./styles/reset.less";
+import './styles/index.less';
+import './styles/reset.less';
 
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import HomePage from './containers/HomePage';
 import BuyPage from './containers/BuyPage';
@@ -20,15 +20,15 @@ const App = () => {
       <ConnectedRouter history={history}>
         <>
           <Switch>
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/" component={HomePage} />
-            <Route path="/buypage" component={BuyPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/buypage" component={BuyPage} />
           </Switch>
         </>
       </ConnectedRouter>
     </Provider>
   );
-}
+};
 
 export default App;
