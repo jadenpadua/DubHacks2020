@@ -22,6 +22,11 @@ class Item(models.Model):
     tag = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
     default_cost = models.FloatField()
+    buy_in_min = models.IntegerField()
+    location = models.CharField(max_length=100)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
+
 
 
 class Order(models.Model):
