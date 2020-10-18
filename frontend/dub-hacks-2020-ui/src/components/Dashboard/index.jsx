@@ -21,12 +21,11 @@ const Dashboard = () => {
   const [data, setData] =useState([]);
   const [host_data, setHostData] = useState([]);
   const [idToItem, setItems] = useState({});
-  useEffect(() => {
+  const updateHosts = () => {
     axios.get("http://127.01:8000/api/items/").then((res) => {
       setHostData(res.data.map((info) => {
         idToItem[info.id] = info;
         setItems(idToItem);
-        console.log(info)
         return {
           title: info.name,
           buyin: info.amount,
@@ -36,13 +35,16 @@ const Dashboard = () => {
           type: 'host',
           location: info.location,
           unit: 'slices',
+          item_id: info.id,
           description: info.reward_desc,
         }
       }));
-    })
-  }, []);
+    });
+  }
   useEffect(() => {
-    if (host_data.length > 0) {
+    updateHosts();
+  }, []);
+  const updateOrders = () => {
     axios.get("http://127.01:8000/api/orders/").then((res) => {
       setData(res.data.map((info) => {
         const item = idToItem[info.item_id];
@@ -54,12 +56,17 @@ const Dashboard = () => {
           image: item.image,
           price: info.cost_per_unit,
           type: 'purchase',
+          item_id: item.id,
           location: item.location,
           unit: 'slices',
         }
       }));
     });
   }
+  useEffect(() => {
+    if (host_data.length > 0) {
+      updateOrders()
+    }
   }, [host_data]);
   return (
     <div className="Dashboard">
@@ -72,7 +79,7 @@ const Dashboard = () => {
           <img className="search" src={search} style={{width: "270px",
     marginLeft: "-63px"}}/>
           {data.map((info) => {
-            return <Card {...info} />
+            return <Card {...info} updateOrders={updateOrders}/>
           })}
         </div>
         <br />
@@ -81,7 +88,7 @@ const Dashboard = () => {
           <img className="house" src={house} style={{width: "225px",
       marginLeft: "-70px", marginRight:"36px"}}/>
           {host_data.map((info) => {
-            return <Card {...info} />
+            return <Card {...info} updateHosts={updateHosts} />
           })}
           <div>
             <AntdCard className='plus-card' onClick={() => {

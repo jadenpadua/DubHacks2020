@@ -3,6 +3,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import "./style.less";
+import { message } from "antd";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class LoginForm extends React.Component {
     this.state = {
       email: '',
       password: '',
-      isLogged: false
+      isLogged: false,
+      name: '',
     }
     this.setUser = props.setUser;
 
@@ -43,8 +45,9 @@ class LoginForm extends React.Component {
       axios.get(`http://127.01:8000/api/get_user/${this.state.email}`)
         .then((res) => {
           console.log(res)
-          this.setState({isLogged: true, email: '', password: ''})
+          
           const data = JSON.parse(res.data.replace(/'/g,"\""))
+          this.setState({isLogged: true, email: '', password: '', name: data.name})
           this.setUser(data);
         })
     this.setState({
@@ -55,7 +58,8 @@ class LoginForm extends React.Component {
 
   render() {
     if(this.state.isLogged) {
-      return <Redirect to = {{ pathname: "/profile" }}  />;
+      message.success("Welcome " + this.state.name)
+      return <Redirect to = {{ pathname: "/dashboard" }}  />;
     }
 
     return (
