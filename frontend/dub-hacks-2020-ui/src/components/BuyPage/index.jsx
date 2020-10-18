@@ -115,7 +115,7 @@ const BuyPage = (props) => {
               position: 'absolute',
               left: '0'
             }}
-            center={[-118.2437, 34.0522]}
+            center={[-117.2340, 32.8801]}
             flyToOptions={{
               speed: 0
             }}
