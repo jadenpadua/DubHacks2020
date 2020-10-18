@@ -61,12 +61,12 @@ const Dashboard = () => {
   return (
     <div className="Dashboard">
       <div className="backdrop-wrapper">
-        <img src={bg}/>
+        <img style={{width: "100vw"}}src={bg}/>
       </div>
       <div className="container">
         <h1><span className="header">Buy Now</span> | Contribute to mass buys from local stores</h1>
         <div className="purchase-cards">
-          <img src={search} style={{width: "260px",
+          <img className="search" src={search} style={{width: "270px",
     marginLeft: "-63px"}}/>
           {data.map((info) => {
             return <Card {...info} />
@@ -75,7 +75,7 @@ const Dashboard = () => {
         <br />
         <h1><span className="header">Host Offers</span> | Organize a mass buy for sweet deals!</h1>
         <div className="host-cards">
-          <img src={house} style={{width: "232px",
+          <img className="house" src={house} style={{width: "225px",
       marginLeft: "-70px", marginRight:"36px"}}/>
           {host_data.map((info) => {
             return <Card {...info} />
