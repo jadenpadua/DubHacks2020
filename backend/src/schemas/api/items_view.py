@@ -29,7 +29,8 @@ class CreateItemView(CreateAPIView):
         location = request.data.get('location')
         buy_in_min = request.data.get('buy_in_min')
         reward_desc = request.data.get('reward_desc');
-        Item.objects.create(tag=tag,image=image,default_cost=default_cost,name=name,latitude=latitude,longitude=longitude,location=location,buy_in_min=buy_in_min,reward_desc=reward_desc)
+        description = request.data.get('description');
+        Item.objects.create(tag=tag,image=image,default_cost=default_cost,name=name,latitude=latitude,longitude=longitude,location=location,buy_in_min=buy_in_min,reward_desc=reward_desc,description=description)
         return HttpResponse("Created")
 
 class GetItemView(RetrieveAPIView):
