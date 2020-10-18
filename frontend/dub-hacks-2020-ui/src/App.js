@@ -11,6 +11,7 @@ import HomePage from './containers/HomePage';
 import BuyPage from './containers/BuyPage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
+import HostPage from './containers/HostPage';
 
 const store = configureStore();
 
@@ -20,6 +21,7 @@ const App = () => {
       <ConnectedRouter history={history}>
         <>
           <Switch>
+            <Route path="/host" component={HostPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/" component={HomePage} />
