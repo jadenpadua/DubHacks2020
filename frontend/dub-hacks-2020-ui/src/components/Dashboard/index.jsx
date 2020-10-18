@@ -11,18 +11,22 @@ import axios from 'axios';
 
 const Dashboard = () => {
   const history = useHistory();
-  const data = [
-    {title: "Cranberries", buyin: 60, description: "abc", image:"https://images-prod.healthline.com/hlcmsresource/images/AN_images/cranberries-101-1296x728-feature.jpg", location:"San Gabriel, CA", orderDeadline: "10/18/20", buyinMin: 66, price: 1.20, unit:'oz', type:'purchase'},
-    {title: "Cranberries", buyin: 110, description: "abc", image:"https://images-prod.healthline.com/hlcmsresource/images/AN_images/cranberries-101-1296x728-feature.jpg", location:"San Gabriel, CA", orderDeadline: "10/18/20", buyinMin: 66, price: 1.20, unit:'oz', type:'purchase'}
-  ]
+  // const data = [
+  //   {title: "Cranberries", buyin: 60, description: "abc", image:"https://images-prod.healthline.com/hlcmsresource/images/AN_images/cranberries-101-1296x728-feature.jpg", location:"San Gabriel, CA", orderDeadline: "10/18/20", buyinMin: 66, price: 1.20, unit:'oz', type:'purchase'},
+  //   {title: "Cranberries", buyin: 110, description: "abc", image:"https://images-prod.healthline.com/hlcmsresource/images/AN_images/cranberries-101-1296x728-feature.jpg", location:"San Gabriel, CA", orderDeadline: "10/18/20", buyinMin: 66, price: 1.20, unit:'oz', type:'purchase'}
+  // ]
   // const host_data = [
   //   {title: "Pizzas", description: "Get a free $25 gift card", image:"https://assets.bonappetit.com/photos/5aaff25c6ed79626bc262ee1/16:9/w_2560%2Cc_limit/pizza-slice-opener-pepperoni-cheese.jpg", location:"San Gabriel, CA", buyinMin: 23, price: 3.20, unit:'slices', type:'host'}
   // ]
+  const [data, setData] =useState([]);
   const [host_data, setHostData] = useState([]);
+  const [idToItem, setItems] = useState({});
   useEffect(() => {
     axios.get("http://127.01:8000/api/items/").then((res) => {
       console.log(res.data);
       setHostData(res.data.map((info) => {
+        idToItem[info.id] = info;
+        setItems(idToItem);
         return {
           title: info.name,
           buyin: info.amount,
@@ -36,6 +40,23 @@ const Dashboard = () => {
         }
       }));
     })
+    axios.get("http://127.01:8000/api/orders/").then((res) => {
+      console.log(res.data);
+      setData(res.data.map((info) => {
+        const item = idToItem[info.item_id];
+        return {
+          title: item.name,
+          buyin: info.amount,
+          buyinMin: item.buy_in_min,
+          image: info.image,
+          price: info.default_cost,
+          type: 'host',
+          location: info.location,
+          unit: 'slices',
+          description: info.reward_desc,
+        }
+      }));
+    });
   }, []);
   return (
     <div className="Dashboard">

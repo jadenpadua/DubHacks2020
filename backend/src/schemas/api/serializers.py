@@ -20,7 +20,7 @@ class OrderObjectSerializer(serializers.ModelSerializer):
     # name_id = serializers.Field(source='name.id')
     class Meta:
         model = Order
-        fields = ('id', 'hostUser', 'item_id', 'amount', 'cost_per_unit', 'delivery_date', 'order_deadline', 'locations')
+        fields = ('id', 'host_user', 'item_id', 'amount', 'cost_per_unit', 'delivery_date', 'order_deadline', 'locations')
 
 
 
