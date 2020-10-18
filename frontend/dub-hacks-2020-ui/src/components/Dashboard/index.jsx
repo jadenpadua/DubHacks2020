@@ -8,6 +8,7 @@ import search from './search.png';
 import './index.less';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../Navbar';
 
 const Dashboard = () => {
   const history = useHistory();
@@ -69,6 +70,8 @@ const Dashboard = () => {
     }
   }, [host_data]);
   return (
+    <>
+    <Navbar />
     <div className="Dashboard">
       <div className="backdrop-wrapper">
         <img style={{width: "100vw"}}src={bg}/>
@@ -103,7 +106,8 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
-export default Dashboard
+export default Dashboard;
