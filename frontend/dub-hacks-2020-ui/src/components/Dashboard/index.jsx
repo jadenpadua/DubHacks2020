@@ -26,6 +26,7 @@ const Dashboard = () => {
       setHostData(res.data.map((info) => {
         idToItem[info.id] = info;
         setItems(idToItem);
+        console.log(info)
         return {
           title: info.name,
           buyin: info.amount,
@@ -45,6 +46,7 @@ const Dashboard = () => {
     axios.get("http://127.01:8000/api/orders/").then((res) => {
       setData(res.data.map((info) => {
         const item = idToItem[info.item_id];
+        
         return {
           title: item.name,
           buyin: info.amount,
