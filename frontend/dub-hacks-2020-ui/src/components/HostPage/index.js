@@ -37,6 +37,7 @@ const HostForm = (props) => {
       location: formData.location,
       buy_in_min: buyin,
       default_cost: parseFloat(formData.price),
+      reward_desc: formData.reward_desc,
     };
     console.log(body);
     axios.defaults.headers = {
@@ -108,7 +109,7 @@ const HostForm = (props) => {
               setBuyIn(v);
             }} />
             <h2 className="location"> Reward for host </h2>
-            <input className="normal-input" onChange={onChange}  name="reward"/>
+            <input className="normal-input" onChange={onChange}  name="reward_desc"/>
             <NavLink activeClassName="selected" to="/login">
               <div className="button">Clear</div>
             </NavLink>

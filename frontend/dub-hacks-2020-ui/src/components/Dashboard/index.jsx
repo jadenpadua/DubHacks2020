@@ -23,7 +23,6 @@ const Dashboard = () => {
   const [idToItem, setItems] = useState({});
   useEffect(() => {
     axios.get("http://127.01:8000/api/items/").then((res) => {
-      console.log(res.data);
       setHostData(res.data.map((info) => {
         idToItem[info.id] = info;
         setItems(idToItem);
@@ -40,24 +39,26 @@ const Dashboard = () => {
         }
       }));
     })
+  }, []);
+  useEffect(() => {
+    if (host_data.length > 0) {
     axios.get("http://127.01:8000/api/orders/").then((res) => {
-      console.log(res.data);
       setData(res.data.map((info) => {
         const item = idToItem[info.item_id];
         return {
           title: item.name,
           buyin: info.amount,
           buyinMin: item.buy_in_min,
-          image: info.image,
-          price: info.default_cost,
-          type: 'host',
-          location: info.location,
+          image: item.image,
+          price: info.cost_per_unit,
+          type: 'purchase',
+          location: item.location,
           unit: 'slices',
-          description: info.reward_desc,
         }
       }));
     });
-  }, []);
+  }
+  }, [host_data]);
   return (
     <div className="Dashboard">
       <div className="backdrop-wrapper">

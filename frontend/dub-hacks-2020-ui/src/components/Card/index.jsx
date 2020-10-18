@@ -14,7 +14,7 @@ const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, un
       <AntdCard className="card">
         <img className="cover-img" src={image} />
         <div className="price">
-          ${price.toFixed(2)}/{unit}
+          ${price.toFixed(2)}
         </div>
         <div className="meta">
           <h1>{title}</h1>
