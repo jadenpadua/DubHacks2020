@@ -3,6 +3,7 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import configureStore, { history } from './store';
 import "./styles/index.less";
+import "./styles/reset.less";
 
 import { Route, Switch} from 'react-router-dom';
 import { Provider } from 'react-redux';
