@@ -18,14 +18,14 @@ const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, un
   const purchase = () => {
     if (type === 'host') {
       setItem({title, image, price,current:buyin, goal: buyinMin,reward_desc: description,item_id});
-      // axios.post("http://127.01:8000/api/create_order/" + user.email, {
+      // axios.post("f255845c2c00.ngrok.io/api/create_order/" + user.email, {
       //   item_id: item_id,
       // }).then(() =>{ 
       //   updateHosts();
       // })
       history.push("/start")
     } else if (type === 'purchase') {
-      // axios.post("http://127.01:8000/api/users/" + user.email + "/purchases/", {
+      // axios.post("f255845c2c00.ngrok.io/api/users/" + user.email + "/purchases/", {
       //   host_user: user.email,
       //   item_id: item_id,
       //   amount: 1,

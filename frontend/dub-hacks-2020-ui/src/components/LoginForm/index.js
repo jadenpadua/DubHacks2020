@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
     axios.defaults.headers = {
       "Content-Type": 'application/json',
     }
-      axios.get(`http://127.01:8000/api/get_user/${this.state.email}`)
+      axios.get(`f255845c2c00.ngrok.io/api/get_user/${this.state.email}`)
         .then((res) => {
           console.log(res)
           

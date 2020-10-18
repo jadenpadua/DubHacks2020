@@ -27,7 +27,7 @@ const HostStart = (props) => {
     };
 
   const makeHost = () => {
-    axios.post("http://127.01:8000/api/create_order/" + user.email, {
+    axios.post("f255845c2c00.ngrok.io/api/create_order/" + user.email, {
         item_id: item.item_id,
       }).then(() =>{ 
         // updateHosts();
