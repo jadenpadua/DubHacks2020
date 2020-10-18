@@ -6,8 +6,8 @@ const HostPageContainer = () => {
   return (
     <>
       <Navbar>
-        <HostPage />
       </Navbar>
+      <HostPage />
     </>
   );
 };

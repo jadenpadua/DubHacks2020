@@ -1,0 +1,110 @@
+.host-start {
+  width: 100vw;
+  margin-top: 10vh;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .image-container {
+    position: relative;
+
+    .price {
+      background-color: #FFFFFB;
+      z-index: 99999;
+      position: absolute;
+      position: right;
+      height: 45px;
+      right: 20px;
+      top: 20px;
+      font-size: 24px;
+      padding: 2px 20px;
+      border: 1.76087px solid #DFDFDF;
+      box-sizing: border-box;
+      box-shadow: 0px 7.04348px 7.04348px rgba(0, 0, 0, 0.04);
+      border-radius: 44.0217px;
+    }
+
+    .item-image {
+      border-radius: 15px;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));
+      height: 585px;
+      object-fit: cover;
+      width: 475px;
+    }
+  }
+
+  .container {
+    margin-left: 50px;
+
+    .button {
+      color: white;
+      background: linear-gradient(268.99deg, #49F56F -23.44%, #62F076 -23.42%, #94D3FA 99.97%);
+      box-shadow: 0px 3.36275px 3.36275px rgba(0, 0, 0, 0.09);
+      border-radius: 20px;
+      height: 40px;
+      width: 200px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 5px;
+    }
+
+    .store-name {
+      font-size: 35px;
+      font-weight: 700;
+    }
+
+    .website-link {
+      font-size: 24px;
+      margin-bottom: 50px;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+
+      &.smiley {
+        font-size: 20px;
+        color: #646464;
+
+        img {
+          height: 30px;
+          width: 30px;
+          padding: 5px;
+          margin-right: 5px;
+        }
+      }
+    
+      &.dollar {
+
+        font-size: 22px;
+        font-weight: 700;
+        color: #646464;
+
+        img {
+          height: 30px;
+          width: 30px;
+          margin-right: 5px;
+        }
+      }
+
+      &.redeem {
+        font-size: 16px;
+        margin: 50px 0;
+
+        img {
+          height: 40px;
+          width: 40px;
+        }
+      }
+    }
+
+    .description {
+      font-size: 16px;
+      margin-top: 50px;
+      width: 650px;
+    }
+  }
+  
+}

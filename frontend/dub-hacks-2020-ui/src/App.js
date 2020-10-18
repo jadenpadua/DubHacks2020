@@ -13,6 +13,7 @@ import LoginPage from './containers/LoginPage';
 import StorePage from './containers/StorePage';
 import RegisterPage from './containers/RegisterPage';
 import HostPage from './containers/HostPage';
+import HostStart from './containers/HostStart';
 import Profile from './containers/Profile';
 import Dashboard from "./components/Dashboard";
 import { UserProvider } from "./UserContext";
@@ -32,6 +33,7 @@ const App = () => {
           <Switch>
             <Route path="/store" component={StorePage} />
             <Route path="/host" component={HostPage} />
+            <Route path="/start" component={HostStart} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/buy" component={BuyPage} />
