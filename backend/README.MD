@@ -40,6 +40,17 @@ CREATE a user: http://127.0.0.1:8000/api/create/
 ```
 GET all items: http://127.0.0.1:8000/api/items/
 GET specific item: http://127.0.0.1:8000/api/:item/
+CREATE an item: http://127.0.0.1:8000/api/items_create/
+```
+
+## API Order Endpoint
+```
+CREATE an ORDER: http://127.0.0.1:8000/api/create_order/:email/
+```
+
+## API Purchase Endpoints
+```
+GET Purchases of a specific User: http://127.0.0.1:8000/api/users/:email/purchases/
 ```
 
 Subscribe to me on Youtube please
