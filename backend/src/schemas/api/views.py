@@ -153,4 +153,20 @@ class PurchaseView(CreateAPIView):
         Purchase.objects.create(email=email,host_user=email,order_id=order_id,purchase_date=datetime.now(),item_id=item_id,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme",tag=item["tag"])
 
         return HttpResponse("Created")
- 
+
+class CreateOrderView(CreateAPIView):
+    def post(self, request, email):
+        item_id = request.data.get('item_id')
+        _item = Item.objects.filter(id=item_id).values()
+        item = _item[0]
+        
+        amount = 0
+        cost_per_unit = item["default_cost"]
+
+        order_deadline = datetime.now() + timedelta(days=2)
+        delivery_date = order_deadline + timedelta(days=1)
+
+        new_order = Order(host_user=email,amount=amount,cost_per_unit=cost_per_unit,order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme",item_id=item_id)
+        new_order.save()
+
+        return HttpResponse("Created")
