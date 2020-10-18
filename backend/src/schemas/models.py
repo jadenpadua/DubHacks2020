@@ -26,6 +26,7 @@ class Item(models.Model):
     location = models.CharField(max_length=100)
     longitude = models.FloatField()
     latitude = models.FloatField()
+    reward_desc = models.CharField(max_length=100)
 
 
 
