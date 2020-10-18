@@ -24,7 +24,11 @@ class CreateItemView(CreateAPIView):
         image = request.data.get('image')
         default_cost = request.data.get('default_cost')
         name = request.data.get('name')
-        Item.objects.create(tag=tag,image=image,default_cost=default_cost,name=name)
+        latitude = request.data.get('latitude')
+        longitude = request.data.get('longitude')
+        location = request.data.get('location')
+        buy_in_min = request.data.get('buy_in_min')
+        Item.objects.create(tag=tag,image=image,default_cost=default_cost,name=name,latitude=latitude,longitude=longitude,location=location,buy_in_min=buy_in_min)
         return HttpResponse("Created")
 
 class GetItemView(RetrieveAPIView):

@@ -6,7 +6,8 @@ from .views import (
   CreateUserView,
   GetUserView,
   PurchaseView,
-  GetRecommendationsView
+  GetRecommendationsView,
+  CreateOrderView
 )
 
 urlpatterns = [
@@ -17,5 +18,6 @@ urlpatterns = [
     path('items/', AllItemsView.as_view()),
     path('items_create/', CreateItemView.as_view()),
     path('items/<id>', GetItemView.as_view()),
-    path('users/<email>/purchases/', PurchaseView.as_view())
+    path('users/<email>/purchases/', PurchaseView.as_view()),
+    path('create_order/<email>', CreateOrderView.as_view())
 ]
