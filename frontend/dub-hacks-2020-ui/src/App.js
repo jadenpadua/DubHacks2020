@@ -1,36 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { ConnectedRouter } from 'connected-react-router';
 
 import configureStore, { history } from './store';
-import "./styles/index.less";
-import "./styles/reset.less";
+import './styles/index.less';
+import './styles/reset.less';
 
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import HomePage from './containers/HomePage';
 import BuyPage from './containers/BuyPage';
 import LoginPage from './containers/LoginPage';
 import StorePage from './containers/StorePage';
 import RegisterPage from './containers/RegisterPage';
+import HostPage from './containers/HostPage';
+import Profile from './containers/Profile';
+import Dashboard from "./components/Dashboard";
+import { UserProvider } from "./UserContext";
 
 const store = configureStore();
 
 const App = () => {
+  const [user, setUser] = useState({});
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <>
+        <UserProvider value={{user: user, setUser: setUser}}>
           <Switch>
+<<<<<<< HEAD
             <Route path="/store" component={StorePage} />
+=======
+            <Route path="/host" component={HostPage} />
+>>>>>>> 446ad781b0407e65658075b85e4a447308e7d90c
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/" component={HomePage} />
             <Route path="/buypage" component={BuyPage} />
+            <Route path="/profile" component={Profile} />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
+        </UserProvider>
         </>
       </ConnectedRouter>
-    </Provider>
+    </Provider> 
   );
-}
+};
 
 export default App;

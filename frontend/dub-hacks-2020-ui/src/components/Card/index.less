@@ -1,0 +1,87 @@
+@import '../../styles/base.less';
+
+.Card {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 8px 4px rgba(0,0,0,0.09);
+  }
+  .card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.09);
+    border-radius: 20px;
+    width: 300px;
+    .ant-card-body {
+      padding: 0px;
+    }
+    .location-svg {
+      margin-left: -3px;
+    }
+    .price {
+      position: absolute;
+      top: 24px;
+      background: white;
+      border-radius: 20px;
+      padding: 4px 8px;
+      text-align: center;
+      font-weight: 600;
+      right: 18px;
+      font-size: 16px;
+      border: 2px solid #DFDFDF;
+    }
+    .meta {
+      .location {
+        font-weight: 600;
+      }
+      padding: 1rem;
+      h1 {
+        font-size: 26px;
+        font-weight: 900;
+      }
+    }
+    .progress { 
+      margin-bottom: 4px;
+      text-align: center;
+      width: calc(100% + 2rem);
+      margin-left: -1rem;
+      .ant-progress-text {
+        display: none;
+      }
+      .ant-progress-bg {
+        background: linear-gradient(90deg, #EA91B5 25.58%, #ECCEA0 61.21%, #49F56F 106.05%);
+      }
+    }
+    .end-date {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .cta-button {
+      margin-top: 12px;
+      vertical-align: center;
+      text-align: center;
+      background: linear-gradient(268.33deg, #FB8A8A -9.18%, #D099F2 229.22%);
+      border-radius: 100px;
+      font-size: 20px;
+      font-weight: 600;
+      z-index: 100;
+      color: white;
+      height: 48px;
+      line-height: 48px;
+      box-shadow: 0px 3.3627450466156006px 3.3627450466156006px 0px rgba(0,0,0,0.09);
+    }
+    .cta-button.host {
+      background: linear-gradient(268.99deg, #49F56F -23.44%, #62F076 -23.42%, #94D3FA 99.97%);
+    }
+    .cover-img {
+      width: 100%;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+    }
+    .desc {
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+  h1 {
+    margin-bottom: 1rem;
+  }
+}

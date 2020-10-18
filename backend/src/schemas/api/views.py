@@ -27,6 +27,9 @@ class CreateUserView(CreateAPIView):
 class GetUserView(RetrieveAPIView):
     def get(self, request, email):
         queryset = User.objects.filter(email=email)
+        if len(queryset) == 0:
+            return HttpResponseBadRequest("Invalid user")
+            
         res = HttpResponse(queryset.values())
         return res
 
