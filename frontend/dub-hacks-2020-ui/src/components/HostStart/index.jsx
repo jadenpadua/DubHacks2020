@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import './style.less';
 
@@ -11,21 +11,32 @@ import UserContext from '../../UserContext';
 import { message } from 'antd';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import ThankYouModal from '../ThankYouModal';
 
 const HostStart = (props) => {
   const {item} = useContext(ItemContext);
   const {user} = useContext(UserContext);
   const history = useHistory();
+  const [visible, setVisible] = useState( false )
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleCancel = () => {
+      setVisible(false);
+    };
+
   const makeHost = () => {
     axios.post("http://127.01:8000/api/create_order/" + user.email, {
         item_id: item.item_id,
       }).then(() =>{ 
         // updateHosts();
-
+        showModal();
       })
   }
   return (
     <div className="host-start">
+      <ThankYouModal handleCancel={handleCancel} showModal={showModal} visible={visible}/>
       <div className="image-container">
         <div className="price">${item.price}</div>
         <img className="item-image" src={item.image}/>
