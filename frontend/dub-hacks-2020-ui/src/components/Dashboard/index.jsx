@@ -32,6 +32,7 @@ const Dashboard = () => {
           type: 'host',
           location: info.location,
           unit: 'slices',
+          description: info.reward_desc,
         }
       }));
     })
