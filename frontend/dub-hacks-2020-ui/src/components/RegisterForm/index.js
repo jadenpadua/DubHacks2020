@@ -55,7 +55,7 @@ const RegisterForm = (props) => {
       "Content-Type": 'application/json',
     }
 
-      axios.post("http://f255845c2c00.ngrok.io/api/create/", postObj )
+      axios.post("http://cc90cd603fdc.ngrok.io/api/create/", postObj )
         .then((res) => {
           console.log(res)
           setisLogged(true)
