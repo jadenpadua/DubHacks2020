@@ -8,6 +8,7 @@ import "./styles/reset.less";
 import { Route, Switch} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import HomePage from './containers/HomePage';
+import BuyPage from './containers/BuyPage';
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ const App = () => {
         <>
           <Switch>
             <Route path="/" component={HomePage} />
+            <Route path="/buypage" component={BuyPage} />
           </Switch>
         </>
       </ConnectedRouter>
