@@ -122,10 +122,8 @@ class PurchaseView(CreateAPIView):
         order_id = None
         if (len(orders) == 0):
             #TODO fix host_user
-           
-            new_order = Order(host_user=email,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme",item_id=item_id)
-            new_order.save()
-            order_id=new_order.id
+            return HttpResponseBadRequest("Not a valid order")
+
         else:
             order = orders[0]
             new_amount = order["amount"] + amount
