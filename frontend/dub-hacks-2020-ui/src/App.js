@@ -15,6 +15,7 @@ import RegisterPage from './containers/RegisterPage';
 import HostPage from './containers/HostPage';
 import Profile from './containers/Profile';
 import Dashboard from "./components/Dashboard";
+import ThankYouModal from "./components/ThankYouModal";
 import { UserProvider } from "./UserContext";
 
 const store = configureStore();
@@ -27,12 +28,10 @@ const App = () => {
         <>
         <UserProvider value={{user: user, setUser: setUser}}>
           <Switch>
-<<<<<<< HEAD
             <Route path="/store" component={StorePage} />
-=======
             <Route path="/host" component={HostPage} />
->>>>>>> 446ad781b0407e65658075b85e4a447308e7d90c
             <Route path="/register" component={RegisterPage} />
+            <Route path="/modal" component={ThankYouModal} />
             <Route path="/login" component={LoginPage} />
             <Route path="/buypage" component={BuyPage} />
             <Route path="/profile" component={Profile} />
@@ -42,7 +41,7 @@ const App = () => {
         </UserProvider>
         </>
       </ConnectedRouter>
-    </Provider> 
+    </Provider>
   );
 };
 

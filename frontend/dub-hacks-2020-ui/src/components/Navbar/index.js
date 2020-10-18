@@ -6,7 +6,6 @@ import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import logo from '../../assets/logo.png';
 import profilepic from '../../assets/stanley-pic.png';
-import searchicon from '../../assets/heart.png';
 import { Input } from 'antd';
 
 const { Search } = Input;
