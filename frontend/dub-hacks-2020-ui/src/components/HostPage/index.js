@@ -43,7 +43,7 @@ const HostForm = (props) => {
     axios.defaults.headers = {
       "Content-Type": 'application/json',
     }
-      axios.post(`f255845c2c00.ngrok.io/api/items_create/`, body)
+      axios.post(`http://f255845c2c00.ngrok.io/api/items_create/`, body)
         .then((res) => {
           console.log(res);
           message.success("Created List item!");

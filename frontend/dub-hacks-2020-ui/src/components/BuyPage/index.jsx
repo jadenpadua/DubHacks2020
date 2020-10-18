@@ -31,7 +31,7 @@ const BuyPage = (props) => {
 
   const makeOrder = (amount) => {
     console.log(user);
-    axios.post("f255845c2c00.ngrok.io/api/users/" + user.email + "/purchases/", {
+    axios.post("http://f255845c2c00.ngrok.io/api/users/" + user.email + "/purchases/", {
       host_user: user.email,
       item_id: order.item_id,
       amount: amount,
