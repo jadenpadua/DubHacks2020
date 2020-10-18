@@ -1,7 +1,12 @@
 @import '../../styles/base.less';
 
 .Card {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 8px 4px rgba(0,0,0,0.09);
+  }
   .card {
+    transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.09);
     border-radius: 20px;
     width: 300px;

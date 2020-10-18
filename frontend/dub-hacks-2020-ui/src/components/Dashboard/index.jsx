@@ -6,8 +6,10 @@ import { Card as AntdCard} from 'antd';
 import {PlusOutlined} from '@ant-design/icons'
 import search from './search.png';
 import './index.less';
+import { useHistory } from 'react-router-dom';
 
 const Dashboard = () => {
+  const history = useHistory();
   const data = [
     {title: "Cranberries", buyin: 60, description: "abc", image:"https://images-prod.healthline.com/hlcmsresource/images/AN_images/cranberries-101-1296x728-feature.jpg", location:"San Gabriel, CA", orderDeadline: "10/18/20", buyinMin: 66, price: 1.20, unit:'oz', type:'purchase'},
     {title: "Cranberries", buyin: 110, description: "abc", image:"https://images-prod.healthline.com/hlcmsresource/images/AN_images/cranberries-101-1296x728-feature.jpg", location:"San Gabriel, CA", orderDeadline: "10/18/20", buyinMin: 66, price: 1.20, unit:'oz', type:'purchase'}
@@ -38,7 +40,9 @@ const Dashboard = () => {
             return <Card {...info} />
           })}
           <div>
-            <AntdCard className='plus-card'>
+            <AntdCard className='plus-card' onClick={() => {
+              history.push("/");
+            }}>
               <div className="plus">
                 <PlusOutlined />
               </div>
