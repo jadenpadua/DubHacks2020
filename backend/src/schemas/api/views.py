@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 from django.http.response import HttpResponseBadRequest
 from rest_framework.generics import( 
@@ -62,7 +62,6 @@ class GetRecommendationsView(RetrieveAPIView):
                 "beef": 150,
             }
         else:
-            print(past_purchases)
             for i, purchase in enumerate(past_purchases):
                 order = Order.objects.filter(id=purchase['order_id']).values()[0]
                 item_id = order['item_id']
@@ -71,7 +70,6 @@ class GetRecommendationsView(RetrieveAPIView):
                 # weigh amount less cuz probably people always buy fixed amounts
                 cost = item['default_cost'] * (purchase['amount'] / 10)
                 category = item['tag']
-                print(purchase["purchase_date"], category)
                 w1 = ((100 - i * 10) / 1) * cost
                 if category in category_weights:
                     category_weights[category] += w1
@@ -83,7 +81,6 @@ class GetRecommendationsView(RetrieveAPIView):
             category_weights_list.append({"tag": k, "weight": v})
         category_weights_list = sorted(category_weights_list, key=lambda a: a["weight"],reverse=True)
         recent_purchases = Purchase.objects.order_by('-purchase_date')[:100].values()
-        print(category_weights_list)
         recommendations = []
         for info in category_weights_list[:3]:
             for r in recent_purchases:
@@ -108,11 +105,18 @@ class PurchaseView(CreateAPIView):
 
         orders = Order.objects.filter(item_id=item_id).order_by("-order_deadline").values()
         _item = Item.objects.filter(id=item_id).values()
-        
         if (len(_item) == 0):
             return HttpResponseBadRequest("Not a valid item")
         item = _item[0]
 
+        valid_orders = []
+        for order in orders:
+            if (order["order_deadline"] >= datetime.now().date()):
+                valid_orders.append(order)
+            else:
+                pass
+        orders = valid_orders
+        
         order_deadline = datetime.now() + timedelta(days=2)
         delivery_date = order_deadline + timedelta(days=1)
         order_id = None
