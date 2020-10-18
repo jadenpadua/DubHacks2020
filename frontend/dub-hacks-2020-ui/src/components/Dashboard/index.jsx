@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card';
 import bg from './bg.png';
+import house from './house.png';
+import { Card as AntdCard} from 'antd';
+import {PlusOutlined} from '@ant-design/icons'
+import search from './search.png';
 import './index.less';
 
 const Dashboard = () => {
@@ -19,6 +23,8 @@ const Dashboard = () => {
       <div className="container">
         <h1><span className="header">Buy Now</span> | Contribute to mass buys from local stores</h1>
         <div className="purchase-cards">
+          <img src={search} style={{width: "260px",
+    marginLeft: "-63px"}}/>
           {data.map((info) => {
             return <Card {...info} />
           })}
@@ -26,9 +32,19 @@ const Dashboard = () => {
         <br />
         <h1><span className="header">Host Offers</span> | Organize a mass buy for sweet deals!</h1>
         <div className="host-cards">
-        {host_data.map((info) => {
-          return <Card {...info} />
-        })}
+          <img src={house} style={{width: "232px",
+      marginLeft: "-70px", marginRight:"36px"}}/>
+          {host_data.map((info) => {
+            return <Card {...info} />
+          })}
+          <div>
+            <AntdCard className='plus-card'>
+              <div className="plus">
+                <PlusOutlined />
+              </div>
+            <div className="text">Own a store? Have someone host a mass buy for you!</div>
+            </AntdCard>
+          </div>
         </div>
       </div>
     </div>
