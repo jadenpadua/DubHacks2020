@@ -126,8 +126,9 @@ class PurchaseView(CreateAPIView):
         if (len(orders) == 0):
             #TODO fix host_user
            
-            new_order = Order.objects.create(host_user=email,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme")
-            order_id = new_order["id"]
+            new_order = Order(host_user=email,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme",item_id=item_id)
+            new_order.save()
+            order_id=new_order.id
         else:
             order = orders[0]
             new_amount = order["amount"] + amount
