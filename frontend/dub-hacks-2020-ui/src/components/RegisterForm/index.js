@@ -46,7 +46,7 @@ const RegisterForm = (props) => {
             );
           })}
           <input className="tag-input" placeholder="Other+" onKeyDown={handleInputDown}/>
-          <h2> Location </h2>
+          <h2 className="location"> Location </h2>
           <input className="normal-input"/>
           <NavLink activeClassName="selected" to="/login">
             <div className="button">Sign In</div>
