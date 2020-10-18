@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card';
-
+import bg from './bg.png';
 import './index.less';
 
 const Dashboard = () => {
@@ -12,13 +12,22 @@ const Dashboard = () => {
   ]
   return (
     <div className="Dashboard">
-      
-      {data.map((info) => {
-        return <Card {...info} />
-      })}
-      {host_data.map((info) => {
-        return <Card {...info} />
-      })}
+      <div className="backdrop-wrapper">
+        <img src={bg}/>
+      </div>
+      <div className="container">
+        <h1><span className="header">Buy Now</span> | Contribute to mass buys from local stores</h1>
+        <div className="purchase-cards">
+          {data.map((info) => {
+            return <Card {...info} />
+          })}
+        </div>
+        <br />
+        <h1><span className="header">Host Offers</span> | Organize a mass buy for sweet deals!</h1>
+        {host_data.map((info) => {
+          return <Card {...info} />
+        })}
+      </div>
     </div>
   )
 }
