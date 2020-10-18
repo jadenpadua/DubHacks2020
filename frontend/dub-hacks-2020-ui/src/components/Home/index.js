@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 import './style.less';
 
-import arrow from '../../assets/arrow.svg';
 import cart from '../../assets/home_cart.png';
 import computer from '../../assets/home_computer.png';
 import logo from '../../assets/logo.png';
@@ -20,13 +19,12 @@ const Home = () => {
             Buy <i><b>cheap</b></i> and <i><b>local</b></i> goods at
           </p>
           <h1>Massit</h1>
-          <NavLink activeClassName="selected" className="button" to="/">
+          <NavLink activeClassName="selected" className="button" to="/register">
             <div className="blur">
             </div>
             <div className="start-button">
               Start here
             </div>
-            <img className="arrow" src={arrow} />
           </NavLink>
         </div>
         <div className="images">
