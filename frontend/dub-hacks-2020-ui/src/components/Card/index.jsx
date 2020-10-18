@@ -19,7 +19,7 @@ const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, un
         <div className="meta">
           <h1>{title}</h1>
           <div style={{marginBottom: "8px"}}><span className="location"><img className="location-svg" src={locationsvg}/> {location}</span> <span>| 1.6 miles away</span></div>
-          <div className="end-date"><ClockCircleOutlined /> Ends on {orderDeadline}</div>
+          {type === 'purchase' && <div className="end-date"><ClockCircleOutlined /> Ends on {orderDeadline}</div>}
           {type === 'purchase' ? <p>{buyin}/{buyinMin} Buy-ins</p> : <p><SmileOutlined /> Requires {buyinMin} Buy-ins</p>}
           {type === 'purchase' && <div className="progress">
             <Progress percent={Math.min((buyin / buyinMin) * 100, 100)}/>
