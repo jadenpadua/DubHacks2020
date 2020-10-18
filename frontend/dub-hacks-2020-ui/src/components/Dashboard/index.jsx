@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [host_data, setHostData] = useState([]);
   const [idToItem, setItems] = useState({});
   const updateHosts = () => {
-    axios.get("http://f255845c2c00.ngrok.io/api/items/").then((res) => {
+    axios.get("http://cc90cd603fdc.ngrok.io/api/items/").then((res) => {
       _setHostData(res.data.map((info) => {
         idToItem[info.id] = info;
         setItems(idToItem);
@@ -47,7 +47,7 @@ const Dashboard = () => {
     updateHosts();
   }, []);
   const updateOrders = () => {
-    axios.get("http://f255845c2c00.ngrok.io/api/orders/").then((res) => {
+    axios.get("http://cc90cd603fdc.ngrok.io/api/orders/").then((res) => {
       const filter_id_set = new Set();
       setData(res.data.map((info) => {
         const item = idToItem[info.item_id];
