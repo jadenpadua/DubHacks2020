@@ -1,8 +1,9 @@
 import React from 'react';
+import Home from '../components/Home';
 
 const HomePageContainer = () => {
   return (
-    <h1>Hello World</h1>
+    <Home/>
   );
 };
 
