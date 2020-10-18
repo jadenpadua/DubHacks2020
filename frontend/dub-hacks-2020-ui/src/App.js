@@ -31,7 +31,7 @@ const App = () => {
             <Route path="/host" component={HostPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/buypage" component={BuyPage} />
+            <Route path="/buy" component={BuyPage} />
             <Route path="/profile" component={Profile} />
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
