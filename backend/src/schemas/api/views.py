@@ -133,11 +133,24 @@ class PurchaseView(CreateAPIView):
             order_id = order["id"]
             Order.objects.filter(id=order_id).update(amount=new_amount)
 
-        # fix cost per unit
+        # This is linear regression
+        SCALING_FACTOR = 1.0
+        if 1 <= amount <= 10:
+            SCALING_FACTOR = 1.0
+        if 11 <= amount <= 25:
+            SCALING_FACTOR = 0.80
+        if 26 <= amount <= 50:
+            SCALING_FACTOR = 0.70
+        if 51 <= amount <= 100:
+            SCALING_FACTOR = 0.50
+        if 101 <= amount <= 200:
+            SCALING_FACTOR = 0.40
+        if 201 <= amount <= 1000:
+            SCALING_FACTOR = 0.30
+        
+        cost_per_unit = (float(amount) / item["default_cost"]) * SCALING_FACTOR
+
         Purchase.objects.create(email=email,host_user=email,order_id=order_id,purchase_date=datetime.now(),item_id=item_id,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme",tag=item["tag"])
 
-        # if len(item_order) == 0:
-        #     Order.objects.create(hostUser=email
-        #     ,order_id=???,purchase_date=purchase_date,amount=amount)
         return HttpResponse("Created")
  
