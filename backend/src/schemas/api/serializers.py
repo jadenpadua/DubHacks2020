@@ -28,4 +28,5 @@ class PurchaseObjectSerializer(serializers.ModelSerializer):
     # name_id = serializers.Field(source='name.id')
     class Meta:
         model = Purchase
-        fields = ('id', 'email', 'order_id', 'purchase_date', 'amount')
+        fields = ('id', 'email', 'order_id', 'purchase_date', 'host_user', 'item_id', 'amount'
+        , 'cost_per_unit', 'delivery_date', 'order_deadline', 'locations', 'tag')
