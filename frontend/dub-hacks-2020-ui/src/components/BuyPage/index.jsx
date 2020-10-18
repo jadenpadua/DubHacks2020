@@ -30,6 +30,7 @@ const BuyPage = (props) => {
   });
 
   const makeOrder = (amount) => {
+    console.log(user);
     axios.post("http://127.01:8000/api/users/" + user.email + "/purchases/", {
       host_user: user.email,
       item_id: order.item_id,
@@ -56,7 +57,7 @@ const BuyPage = (props) => {
         <div className="i-card">
           <img src={order.image} className="b-image" alt="i-buy" />
           <div className="price">
-            <h3>{order.price}</h3>
+            <h3>${order.price}</h3>
           </div>
         </div>
         <div className="i-text">
