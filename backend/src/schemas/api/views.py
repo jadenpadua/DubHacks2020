@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+
+from django.http.response import HttpResponseBadRequest
 from rest_framework.generics import( 
     ListAPIView, 
     CreateAPIView,
@@ -31,7 +33,10 @@ class GetUserView(RetrieveAPIView):
 class GetRecommendationsView(RetrieveAPIView):
     def get(self, request, email):
 
-        user = User.objects.filter(email=email).values()[0]
+        _user = User.objects.filter(email=email).values()
+        if (len(_user) == 0):
+            return HttpResponseBadRequest("Invalid user")
+        user = _user[0]
         print(user)
         prefs = user['preferences'].split(",")
         for pref in prefs:
@@ -48,22 +53,30 @@ class GetRecommendationsView(RetrieveAPIView):
         """
 
         past_purchases = Purchase.objects.filter(email=email).order_by('-purchase_date')[:10].values()
-        print(past_purchases)
-        
         category_weights = {}
-        for i, purchase in enumerate(past_purchases):
-            order = Order.objects.filter(id=purchase['order_id']).values()[0]
-            item_id = order['item_id']
-            item = Item.objects.filter(id=item_id).values()[0]
+        if len(past_purchases) == 0:
+            # hardcode these weights...
+            category_weights = {
+                "fish": 100,
+                "chicken": 200,
+                "beef": 150,
+            }
+        else:
+            print(past_purchases)
+            for i, purchase in enumerate(past_purchases):
+                order = Order.objects.filter(id=purchase['order_id']).values()[0]
+                item_id = order['item_id']
+                item = Item.objects.filter(id=item_id).values()[0]
 
-            # weigh amount less cuz probably people always buy fixed amounts
-            cost = item['default_cost'] * (purchase['amount'] / 10)
-            category = item['tag']
-            w1 = ((10 - i) / 10) * cost
-            if category in category_weights:
-                category_weights[category] += w1
-            else:
-                category_weights[category] = w1
+                # weigh amount less cuz probably people always buy fixed amounts
+                cost = item['default_cost'] * (purchase['amount'] / 10)
+                category = item['tag']
+                w1 = ((10 - i) / 10) * cost
+                if category in category_weights:
+                    category_weights[category] += w1
+                else:
+                    category_weights[category] = w1
+
 
         category_weights_list = []
         for k, v in category_weights.items():
@@ -100,8 +113,17 @@ class PurchaseView(CreateAPIView):
         current_time_split[1] = str(int(current_time_split[1]) + 1)
         delivery_date = current_time_split
 
-        item_order = Item.objects.filter(id=item_id)
-
+        orders = Order.objects.filter(item_id=item_id).order_by("-order_deadline").values()
+        _item = Item.objects.filter(id=item_id).values()
+        
+        if (len(_item) == 0):
+            return HttpResponseBadRequest("Not a valid item")
+        item = _item[0]
+        if (len(orders) == 0):
+            #TODO fix host_user
+            order_deadline = datetime.now() + timedelta(days=2)
+            delivery_date = order_deadline + timedelta(days=1)
+            Order.objects.create(host_user=email,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme")
         # if len(item_order) == 0:
         #     Order.objects.create(hostUser=email
         #     ,order_id=???,purchase_date=purchase_date,amount=amount)
