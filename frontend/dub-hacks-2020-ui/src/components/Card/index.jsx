@@ -23,8 +23,8 @@ const Card = ({buyin, image, title, location, orderDeadline, buyinMin, price, un
           {type === 'purchase' ? <p>{buyin}/{buyinMin} Buy-ins</p> : <p><SmileOutlined /> Requires {buyinMin} Buy-ins</p>}
           {type === 'purchase' && <div className="progress">
             <Progress percent={Math.min((buyin / buyinMin) * 100, 100)}/>
-          </div>
-}
+          </div>}
+          {type === 'host' && <p className="desc"><span className="dollar">$</span> {description}</p>}
           <div className={type === 'purchase' ? "cta-button" : "cta-button host"} onClick={purchase}>
             {type === 'purchase' ? 'Purchase Now' : 'Host now'}
           </div>
