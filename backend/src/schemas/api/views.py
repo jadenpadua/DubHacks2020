@@ -124,6 +124,9 @@ class PurchaseView(CreateAPIView):
             order_deadline = datetime.now() + timedelta(days=2)
             delivery_date = order_deadline + timedelta(days=1)
             Order.objects.create(host_user=email,amount=amount,cost_per_unit=item["default_cost"],order_deadline=order_deadline,delivery_date=delivery_date,locations="fixme")
+        else:
+            order = orders[0]
+            
         # if len(item_order) == 0:
         #     Order.objects.create(hostUser=email
         #     ,order_id=???,purchase_date=purchase_date,amount=amount)
