@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import HomePage from './containers/HomePage';
 import BuyPage from './containers/BuyPage';
 import LoginPage from './containers/LoginPage';
+import StorePage from './containers/StorePage';
 import RegisterPage from './containers/RegisterPage';
 
 const store = configureStore();
@@ -20,6 +21,7 @@ const App = () => {
       <ConnectedRouter history={history}>
         <>
           <Switch>
+            <Route path="/store" component={StorePage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/" component={HomePage} />
