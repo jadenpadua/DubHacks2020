@@ -27,11 +27,8 @@ const App = () => {
         <>
         <UserProvider value={{user: user, setUser: setUser}}>
           <Switch>
-<<<<<<< HEAD
             <Route path="/store" component={StorePage} />
-=======
             <Route path="/host" component={HostPage} />
->>>>>>> 446ad781b0407e65658075b85e4a447308e7d90c
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/buypage" component={BuyPage} />
