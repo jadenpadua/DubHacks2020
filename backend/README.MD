@@ -52,5 +52,4 @@ CREATE an ORDER: http://127.0.0.1:8000/api/create_order/:email/
 ```
 GET Purchases of a specific User: http://127.0.0.1:8000/api/users/:email/purchases/
 ```
-
 Subscribe to me on Youtube please
