@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import HomePage from './containers/HomePage';
 import BuyPage from './containers/BuyPage';
 import LoginPage from './containers/LoginPage';
+import StorePage from './containers/StorePage';
 import RegisterPage from './containers/RegisterPage';
 import HostPage from './containers/HostPage';
 import Profile from './containers/Profile';
@@ -26,6 +27,7 @@ const App = () => {
         <>
         <UserProvider value={{user: user, setUser: setUser}}>
           <Switch>
+            <Route path="/store" component={StorePage} />
             <Route path="/host" component={HostPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
