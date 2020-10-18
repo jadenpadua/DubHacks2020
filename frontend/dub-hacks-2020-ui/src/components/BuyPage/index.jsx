@@ -9,6 +9,7 @@ import star from '../../assets/star.svg';
 import redeem from '../../assets/redeem.svg';
 import stanley from '../../assets/stanley.png';
 import ratings from '../../assets/rating.png';
+import question from '../../assets/question.png';
 
 const BuyPage = (props) => {
   let stars = [];
@@ -115,6 +116,7 @@ const BuyPage = (props) => {
               <img className="ratings" src={ratings}/>
             </div>
           </div>
+          <img className="question" src={question}/>
         </div>
       </div>
     </div>
