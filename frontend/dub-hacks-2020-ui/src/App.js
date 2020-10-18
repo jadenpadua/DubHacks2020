@@ -16,6 +16,7 @@ import HostPage from './containers/HostPage';
 import HostStart from './containers/HostStart';
 import Profile from './containers/Profile';
 import Dashboard from "./components/Dashboard";
+import ThankYouModal from "./components/ThankYouModal";
 import { UserProvider } from "./UserContext";
 import {ItemProvider} from './ItemContext';
 import { OrderProvider } from "./OrderContext";
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/host" component={HostPage} />
             <Route path="/start" component={HostStart} />
             <Route path="/register" component={RegisterPage} />
+            <Route path="/modal" component={ThankYouModal} />
             <Route path="/login" component={LoginPage} />
             <Route path="/buy" component={BuyPage} />
             <Route path="/profile" component={Profile} />
@@ -49,7 +51,7 @@ const App = () => {
         </UserProvider>
         </>
       </ConnectedRouter>
-    </Provider> 
+    </Provider>
   );
 };
 
