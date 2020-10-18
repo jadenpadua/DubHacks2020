@@ -18,7 +18,30 @@ class User(models.Model):
         return self.name
 
 class Item(models.Model):
-    item_id = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     tag = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
     default_cost = models.FloatField()
+
+
+class Order(models.Model):
+    host_user = models.CharField(max_length=100)
+    item_id = models.IntegerField()
+    amount = models.IntegerField()
+    cost_per_unit = models.FloatField()
+    delivery_date = models.DateField()
+    order_deadline = models.DateField()
+    locations = models.CharField(max_length=100)
+
+class Purchase(models.Model):
+    email = models.CharField(max_length=100)
+    order_id = models.IntegerField()
+    purchase_date = models.DateField()
+    host_user = models.CharField(max_length=100)
+    item_id = models.IntegerField()
+    amount = models.IntegerField()
+    cost_per_unit = models.FloatField()
+    delivery_date = models.DateField()
+    order_deadline = models.DateField()
+    locations = models.CharField(max_length=100)
+    tag = models.CharField(max_length=100)
