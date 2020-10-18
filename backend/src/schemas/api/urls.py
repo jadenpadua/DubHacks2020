@@ -5,7 +5,7 @@ from .views import (
   AllUsersView,
   CreateUserView,
   GetUserView,
-  PurchaseView
+  PurchaseView,
   GetRecommendationsView
 )
 
