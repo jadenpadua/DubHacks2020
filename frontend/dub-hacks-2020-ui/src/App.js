@@ -11,6 +11,7 @@ import HomePage from './containers/HomePage';
 import BuyPage from './containers/BuyPage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
+import Profile from './containers/Profile';
 
 const store = configureStore();
 
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/login" component={LoginPage} />
             <Route path="/" component={HomePage} />
             <Route path="/buypage" component={BuyPage} />
+            <Route path="/profile" component={Profile} />
           </Switch>
         </>
       </ConnectedRouter>

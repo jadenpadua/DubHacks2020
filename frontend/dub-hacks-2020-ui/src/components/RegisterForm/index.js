@@ -12,6 +12,7 @@ const RegisterForm = (props) => {
       if (e.target.value) {
         setOptions([...options, e.target.value]);
         setInterests([...interests, e.target.value]);
+        console.log(interests)
         e.target.value='';
       }
     }
