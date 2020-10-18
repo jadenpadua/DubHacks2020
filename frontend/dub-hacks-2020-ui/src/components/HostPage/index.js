@@ -33,7 +33,7 @@ const HostForm = (props) => {
       longitude: 0,
       latitude: 0,
       image: formData.thumb,
-      desc: formData.desc,
+      description: formData.desc,
       location: formData.location,
       buy_in_min: buyin,
       default_cost: parseFloat(formData.price),
